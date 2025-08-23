@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selectare Țară și Oraș</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .autocomplete-container {
+            position: relative;
+            max-width: 300px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        .suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ccc;
+            border-top: none;
+            max-height: 150px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1000;
+        }
+
+        .suggestions div {
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .suggestions div:hover {
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Selectează o țară și un oraș</h2>
+
+    <!-- Selectare țară -->
+    <div class="autocomplete-container">
+        <label>Țară:</label>
+        <input type="text" id="countryInput" placeholder="Tastează sau selectează o țară">
+        <div id="countrySuggestions" class="suggestions"></div>
+    </div>
+
+    <!-- Selectare oraș -->
+    <div class="autocomplete-container">
+        <label>Oraș:</label>
+        <input type="text" id="cityInput" placeholder="Alege mai întâi țara" disabled>
+        <div id="citySuggestions" class="suggestions"></div>
+    </div>
+
+    <script>
+        // Date de exemplu
+        const data = {
+            "United States": ["New York", "Los Angeles", "Chicago"],
+            "Canada": ["Toronto", "Vancouver", "Montreal"],
+            "United Kingdom": ["London", "Manchester", "Birmingham"],
+            "Germany": ["Berlin", "Munich", "Hamburg"],
+            "France": ["Paris", "Lyon", "Marseille"],
+            "Japan": ["Tokyo", "Osaka", "Kyoto"],
+            "India": ["Delhi", "Mumbai", "Bangalore"]
+        };
+
+        const countries = Object.keys(data);
+
+        const countryInput = document.getElementById("countryInput");
+        const countrySuggestions = document.getElementById("countrySuggestions");
+        const cityInput = document.getElementById("cityInput");
+        const citySuggestions = document.getElementById("citySuggestions");
+
+        function showSuggestions(inputEl, suggestionsBox, items, filter = "", onSelect = null) {
+            suggestionsBox.innerHTML = "";
+            const filtered = items.filter(item => item.toLowerCase().includes(filter.toLowerCase()));
+
+            if (filtered.length > 0) {
+                filtered.forEach(value => {
+                    const div = document.createElement("div");
+                    div.textContent = value;
+                    div.addEventListener("click", () => {
+                        inputEl.value = value;
+                        suggestionsBox.style.display = "none";
+                        if (onSelect) onSelect(value);
+                    });
+                    suggestionsBox.appendChild(div);
+                });
+                suggestionsBox.style.display = "block";
+            } else {
+                suggestionsBox.style.display = "none";
+            }
+        }
+
+        // Țări: afișează toate la focus
+        countryInput.addEventListener("focus", () => {
+            showSuggestions(countryInput, countrySuggestions, countries, "");
+        });
+        // Țări: filtrează la input
+        countryInput.addEventListener("input", () => {
+            showSuggestions(countryInput, countrySuggestions, countries, countryInput.value);
+        });
+
+        // Când selectezi o țară → activează câmpul pentru orașe
+        function onCountrySelected(country) {
+            cityInput.disabled = false;
+            cityInput.value = "";
+            citySuggestions.innerHTML = "";
+            cityInput.placeholder = "Tastează sau selectează un oraș";
+
+            // focus pe oraș → afișează toate orașele din țara respectivă
+            cityInput.addEventListener("focus", () => {
+                showSuggestions(cityInput, citySuggestions, data[country], "");
+            });
+            // filtrare orașe la input
+            cityInput.addEventListener("input", () => {
+                showSuggestions(cityInput, citySuggestions, data[country], cityInput.value);
+            });
+        }
+
+        // Legăm funcția la selectarea unei țări
+        countryInput.addEventListener("focus", () => {
+            showSuggestions(countryInput, countrySuggestions, countries, "", onCountrySelected);
+        });
+        countryInput.addEventListener("input", () => {
+            showSuggestions(countryInput, countrySuggestions, countries, countryInput.value, onCountrySelected);
+        });
+
+        // Ascundem meniurile când dai click în afară
+        document.addEventListener("click", (e) => {
+            if (!e.target.closest(".autocomplete-container")) {
+                countrySuggestions.style.display = "none";
+                citySuggestions.style.display = "none";
+            }
+        });
+    </script>
+</body>
+
+</html>

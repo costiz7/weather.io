@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(235, 233, 233);
+    position: relative;
+}
+
+.bar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 50px;
+    position: relative;
+    height: 75px;
+    width: 600px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+#logo {
+    height: 50px;
+    transform: translate(-10px, -5px);
+}
+
+#city-input {
+    position: relative;
+}
