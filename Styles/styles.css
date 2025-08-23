@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Fredoka";
 }
 
 body {
@@ -17,20 +18,47 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    gap: 50px;
     position: relative;
     height: 75px;
     width: 600px;
-    border-radius: 10px;
+    gap: 50px;
+    border-radius: 50px;
     background-color: rgb(255, 255, 255);
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    transition: 300ms;
 }
 
 #logo {
     height: 50px;
-    transform: translate(-10px, -5px);
+    transform: translate(10px, -3px);
 }
 
 #city-input {
     position: relative;
+    height: 30px;
+    cursor: pointer;
+}
+
+#go-btn {
+    position: relative;
+    transform: translateX(-15px);
+    width: 100px;
+    border: none;
+    height: 45px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+    background-color: black;
+    border-radius: 50px;
+    transition: 400ms;
+}
+
+#go-btn:hover {
+    transform: scale(1.1) translateX(-15px);
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.bar.move-up {
+    transform: translateY(-400%);
 }
