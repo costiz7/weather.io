@@ -84,5 +84,5 @@ body {
 }
 
 .bar.move-up {
-    transform: translateY(-400%);
+    transform: translateY(-40vh);
 }
