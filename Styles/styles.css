@@ -11,6 +11,7 @@ body {
     align-items: center;
     height: 100vh;
     position: relative;
+    background-color: #fffbfc;
 }
 
 .bar {
@@ -24,7 +25,7 @@ body {
     border-radius: 50px;
     background-color: rgb(255, 255, 255);
     transition: 300ms;
-    border: 2px solid rgb(0, 0, 0)
+    border: 2px solid #ff4877;
 }
 
 #logo {
@@ -36,6 +37,30 @@ body {
     position: relative;
     height: 30px;
     cursor: pointer;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #ff85a4;
+    transition: 300ms;
+    caret-color: #ff4877;
+    font-size: 1rem;
+    color: #ff85a4;
+}
+
+#city-input::placeholder {
+    color: #ff85a4;
+    font-size: 1rem;
+}
+
+#city-input:focus::placeholder {
+    color: transparent;
+}
+
+#city-input:focus {
+    cursor: default;
+}
+
+#city-input:hover {
+    border-bottom: 2px solid #ff4877;
 }
 
 #go-btn {
@@ -48,13 +73,13 @@ body {
     font-size: 20px;
     font-weight: 500;
     color: white;
-    background-color: black;
+    background-color: #ff4877;
     border-radius: 50px;
     transition: 400ms;
 }
 
 #go-btn:hover {
-    transform: scale(1.1) translateX(-15px);
+    transform: scale(1.03) translateX(-15px);
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
 }
 
