@@ -1,3 +1,5 @@
+
 document.getElementById("go-btn").addEventListener("click", () => {
-    document.querySelector(".bar").classList.add("move-up");
+    document.querySelector(".weather-app").classList.add("move-up");
+    document.querySelector(".weather-card").classList.add("show");
 });
