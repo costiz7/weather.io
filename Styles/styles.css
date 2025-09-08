@@ -118,8 +118,6 @@ body {
     background-color: rgb(234, 68, 109);
 }
 
-
-
 #go-btn:active {
     transform: scale(0.9) translateX(-15px);
 }
@@ -164,20 +162,32 @@ body {
         "wType wType"
         "wIcon wTemp";
     height: 100%;
-    width: 100%;
-    background-color: #a3cc60;
+    width: 70%;
+    border-right: 2px solid #ff85a4;
 }
 
 .wType {
     grid-area: wType;
+    position: relative;
+    color: #ff85a4;
+    font-size: 1.4rem;
+    letter-spacing: 10px;
+    left: 20px;
 }
 
 .wIcon {
     grid-area: wIcon;
+    height: 125px;
+    position: relative;
+    bottom: 10px;
+    left: 20px;
 }
 
 .wTemp {
     grid-area: wTemp;
+    font-size: 5rem;
+    color: #ff4877;
+    font-weight: 600;
 }
 
 .second-half {
@@ -186,24 +196,55 @@ body {
         "wPress wPress"
         "wHum wHum"
         "minTemp maxTemp";
-    background-color: #77976c;
     padding: 5px 10px 5px 30px;
+    width: 30%;
+    gap: 10px;
 }
 
 .wPress {
     grid-area: wPress;
+    display: flex;
+    color: #ff4877;
+    font-size: 1.1rem;
 }
 
 .wHum {
     grid-area: wHum;
+    display: flex;
+    color: #ff4877;
+    font-size: 1.1rem;
 }
 
 .minTemp {
     grid-area: minTemp;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ff4877;
+    font-size: 1.1rem;
+    position: relative;
+    right: 10px;
 }
 
 .maxTemp {
     grid-area: maxTemp;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ff4877;
+    font-size: 1.1rem;
+    position: relative;
+    right: 10px;
+}
+
+.wMinH {
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+.wMaxH {
+    letter-spacing: 2px;
+    font-weight: 500;
 }
 
 @media (max-width: 750px) {
@@ -234,5 +275,50 @@ body {
 
     #city-input::placeholder {
         font-size: 0.8rem;
+    }
+
+    .first-half {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid #ff85a4;
+    }
+
+    .wIcon {
+        height: 150px;
+        object-fit: contain;
+        position: relative;
+        bottom: 0px;
+        left: 0px;
+    }
+
+    .main-info {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .wType {
+        left: 0px
+    }
+
+    .second-half {
+        display: grid;
+        grid-template-areas:
+            "wPress wHum"
+            "minTemp maxTemp";
+        padding: 5px 0px 0px 10px;
+        column-gap: 30px;
+        width: 100%;
+    }
+
+    .minTemp {
+        right: 0px;
+    }
+
+    .maxTemp {
+        right: 0px;
     }
 }
