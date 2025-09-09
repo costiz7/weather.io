@@ -19,12 +19,17 @@ document.getElementById("go-btn").addEventListener("click", async event => {
                 return;
             }
 
-            let name = coordinates[0].name;
-            let country = coordinates[0].country;
             let lat = coordinates[0].lat.toFixed(2);
             let lon = coordinates[0].lon.toFixed(2);
 
-            console.log(lon);
+            const weatherData = await getWeatherData(lat, lon);
+
+            if(weatherData.length === 0){
+                displayError("No data found");
+                return;
+            }
+
+            insertData(weather);
 
         }catch(error){
             console.error(error);
@@ -49,6 +54,18 @@ async function getCoordinatesData(city){
     return await response.json();
 }
 
+async function getWeatherData(lat, lon){
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
+
+    const response = await fetch(apiUrl);
+
+    if(!response.ok){
+        throw new Error("Could not find fetch data");
+    }
+
+    return await response.json();
+}
+
 function displayError(message){
 
 }
@@ -57,6 +74,6 @@ function displayError(message){
 
 //GEOCODE
 
-
+//https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric
 
 //http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}
