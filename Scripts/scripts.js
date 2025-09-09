@@ -1,5 +1,62 @@
 
-document.getElementById("go-btn").addEventListener("click", () => {
+let cityInput = document.getElementById("city-input");
+let apiKey = "4e2e8b53992605fa5ca69df673c34a0b";
+
+
+
+document.getElementById("go-btn").addEventListener("click", async event => {
     document.querySelector(".weather-app").classList.add("move-up");
     document.querySelector(".weather-card").classList.add("show");
+
+    let city = cityInput.value;
+
+    if(city){
+        try{
+            const coordinates = await getCoordinatesData(city);
+
+            if(coordinates.length === 0){
+                displayError("City not found");
+                return;
+            }
+
+            let name = coordinates[0].name;
+            let country = coordinates[0].country;
+            let lat = coordinates[0].lat.toFixed(2);
+            let lon = coordinates[0].lon.toFixed(2);
+
+            console.log(lon);
+
+        }catch(error){
+            console.error(error);
+            displayError(error);
+        }
+    }else{
+        displayError("Please enter a city!");
+    }
 });
+
+
+//THIS FETCHES COORDINATES
+async function getCoordinatesData(city){
+    const apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`;
+
+    const response = await fetch(apiUrl);
+
+    if(!response.ok){
+        throw new Error("Could not fetch coordinates");
+    }
+
+    return await response.json();
+}
+
+function displayError(message){
+
+}
+
+//API WORK
+
+//GEOCODE
+
+
+
+//http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}
