@@ -143,7 +143,7 @@ function formatWindDirection(deg) {
 
 //THIS FETCHES COORDINATES
 async function getCoordinatesData(city){
-    const apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`;
+    const apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`;
 
     const response = await fetch(apiUrl);
 
