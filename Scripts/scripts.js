@@ -3,8 +3,6 @@ let cityInput = document.getElementById("city-input");
 let apiKey = "4e2e8b53992605fa5ca69df673c34a0b";
 
 document.getElementById("go-btn").addEventListener("click", async event => {
-    document.querySelector(".weather-app").classList.add("move-up");
-    document.querySelector(".weather-card").classList.add("show");
 
     let city = cityInput.value;
 
@@ -30,6 +28,9 @@ document.getElementById("go-btn").addEventListener("click", async event => {
             insertData(weatherData, cityName);
 
             cityInput.value = '';
+
+            document.querySelector(".weather-app").classList.add("move-up");
+            document.querySelector(".weather-card").classList.add("show");
 
         }catch(error){
             console.error(error);
