@@ -5,12 +5,12 @@ An interactive and responsive **weather website** that shows the current weather
 1. **Geocoding API** – Converts the city name you enter into latitude and longitude.  
 2. **OpenWeather API** – Retrieves the current weather data using those coordinates.  
 
-This project highlights my **frontend development, API integration, and UI/UX design skills**. All weather icons were **custom designed in Photoshop**, and animations were implemented to create a modern, smooth user experience.
+This project highlights my **frontend development, API integration, and UI/UX design skills**. All weather icons were **custom designed in Photoshop**, and fancy animations were implemented to create a smooth user experience.
 
 
 ## 🚀 Check it out here  
 
-[weather.io Website](https://your-vercel-link.vercel.app)
+[weather.io Website](https://weather-io-amber.vercel.app/)
 
 
 
@@ -33,5 +33,5 @@ This project highlights my **frontend development, API integration, and UI/UX de
 ## 🎯 Purpose
 This project was created to:  
 - Practice **API integration** with frontend applications  
-- Create a polished, **responsive UI/UX**  
+- Create a **responsive UI/UX**  
 - Showcase custom **design and animations**  
